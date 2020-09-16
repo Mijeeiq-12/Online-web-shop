@@ -1,0 +1,55 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace WebMiraftel.Models
+{
+    public class ProductTypeModel
+    {
+        public string InsertProductType(ProductType productType)
+        {
+            try
+            {
+                RaftelEntities db = new RaftelEntities();
+                db.ProductTypes.Add(productType);
+                db.SaveChanges();
+                return productType.TypeID + " амжилттай нэмэгдлээ.";
+            }
+            catch (Exception e)
+            {
+                return "error: " + e.ToString();
+            }
+        }
+        public string UpdateProductType(int id, ProductType productType)
+        {
+            try
+            {
+                RaftelEntities db = new RaftelEntities();
+                ProductType p = db.ProductTypes.Find(id);
+                p.TypeID = productType.TypeID;
+                db.SaveChanges();
+                return productType.TypeID + " амжилттай засагдлаа.";
+            }
+            catch (Exception e)
+            {
+                return "error: " + e.ToString();
+            }
+        }
+        public string DeleteProductType(int id)
+        {
+            try
+            {
+                RaftelEntities db = new RaftelEntities();
+                ProductType productType = db.ProductTypes.Find();
+                db.ProductTypes.Attach(productType);
+                db.ProductTypes.Remove(productType);
+                return productType.TypeID + " амжилттай усгагдлаа.";
+            }
+            catch (Exception e)
+            {
+                return "error: " + e.ToString();
+            }
+        }
+    }
+}
