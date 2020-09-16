@@ -1,0 +1,108 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace WebMiraftel.Models
+{
+    public class ProductModel
+    {
+        public string InsertProduct(Product product)
+        {
+            try
+            {
+                RaftelEntities db = new RaftelEntities();
+                db.Products.Add(product);
+                db.SaveChanges();
+                return product.Name + " амжилттай нэмэгдлээ.";
+            }
+            catch (Exception e)
+            {
+                return "error: " + e.ToString();
+            }
+        }
+        public string UpdateProduct(int id, Product product)
+        {
+            try
+            {
+                RaftelEntities db = new RaftelEntities();
+                Product p = db.Products.Find(id);
+                p.Name = product.Name;
+                p.Price = product.Price;
+                p.TypeID = product.TypeID;
+                p.Information = product.Information;
+                p.Images = product.Images;
+                db.SaveChanges();
+                return product.Name + " амжилттай засагдлаа.";
+            }
+            catch (Exception e)
+            {
+                return "error: " + e.ToString();
+            }
+        }
+        public string DeleteProduct(int id)
+        {
+            try
+            {
+                RaftelEntities db = new RaftelEntities();
+                Product product = db.Products.Find();
+                db.Products.Attach(product);
+                db.Products.Remove(product);
+                return product.Name + " амжилттай усгагдлаа.";
+            }
+            catch (Exception e)
+            {
+                return "error: " + e.ToString();
+            }
+        }
+
+        public Product GetProduct(int id)
+        {
+            try
+            {
+                using (RaftelEntities db = new RaftelEntities() )
+                {
+                    Product product = db.Products.Find(id);
+                    return product;
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+        public List<Product> GetAllProducts()
+        {
+            try
+            {
+                using (RaftelEntities db = new RaftelEntities())
+                {
+                    List<Product> products = (from x in db.Products
+                                              select x).ToList();
+                    return products;
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+        public List<Product> GetProductByType(int typeId)
+        {
+            try
+            {
+                using (RaftelEntities db = new RaftelEntities())
+                {
+                    List<Product> products = (from x in db.Products
+                                              where x.TypeID == typeId
+                                              select x).ToList();
+                    return products;
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+    }
+}
