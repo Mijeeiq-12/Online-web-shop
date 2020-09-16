@@ -1,0 +1,77 @@
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using WebMiraftel.Models;
+
+namespace WebMiraftel.Pages.Account
+{
+    public partial class Register : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+        protected void btnRegister_Click(object sender, EventArgs e)
+        {
+            UserStore<IdentityUser> userStore = new UserStore<IdentityUser>();
+            userStore.Context.Database.Connection.ConnectionString =
+            System.Configuration.ConfigurationManager.ConnectionStrings["RaftelConnectionString"].ConnectionString;
+            UserManager<IdentityUser> manager = new UserManager<IdentityUser>(userStore);
+            IdentityUser user = new IdentityUser();
+            user.UserName = txtUserName.Text;
+            if (txtPassword.Text == txtConfirmPassword.Text)
+            {
+                try
+                {
+                    IdentityResult result = manager.Create(user, txtPassword.Text);
+                    if (result.Succeeded)
+                    {
+                        UserInformation info = new UserInformation()
+                        {
+                            Address = txtAddress.Text,
+                            FirstName = txtFirstName.Text,
+                            LastName = txtLastName.Text,
+                            GUID = user.Id,
+                            PostalCode = Convert.ToInt32(txtPostalCode.Text)
+                        };
+
+                        UserInformationModel model = new UserInformationModel();
+                        model.InsertUserinformation(info);
+
+                        //Store user in DB
+                        var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+                        var userIdentity = manager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+
+                        //If succeedeed, log in the new user and set a cookie and redirect to homepage
+                        authenticationManager.SignIn(new AuthenticationProperties(), userIdentity);
+                        lblResult.Text = "Амжилттай бүртгэгдлээ.";
+                        lblResult.ForeColor = System.Drawing.Color.Green;
+                        Response.Redirect("~/Pages/Account/Login.aspx");
+                    }
+                    else
+                    {
+                        litStatusMessage.Text = result.Errors.FirstOrDefault();
+                        lblResult.Text = "Таны нэр эсвэл нууц үг буруу байна.";
+                        lblResult.ForeColor = System.Drawing.Color.Red;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    litStatusMessage.Text = ex.ToString();
+                }
+            }
+            else
+            {
+                litStatusMessage.Text = "Passwords must match!";
+                lblResult.ForeColor = System.Drawing.Color.Red;
+            }
+
+        }
+    }
+}
