@@ -1,0 +1,56 @@
+<%@ Page Title="" Language="C#" MasterPageFile="~/MiraftelMaster.Master" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="WebMiraftel.Pages.Index" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style type="text/css">
+        .auto-style5 {
+            width: 400px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
+    <table>
+        <tr>
+            <td rowspan="4" style="width: 400px">
+                <asp:Image ID="imgProduct" ImageUrl="~/ItemImage/Product/Raftel.jpg" runat="server" CssClass="detailsImage2" ForeColor="Black"/></td>
+            <td class="auto-style5"><h2 style="margin: 0 auto">
+                <asp:Label ID="lblTitle" runat="server" Text="MI-RAFTEL" Width="100%" ></asp:Label><hr /> Би электрон системийн "ХААН" болно.<br />Удахгүй мэдээлэл оруулах болно.</h2></td>
+        </tr>
+        <tr>
+            <td class="auto-style5">
+                Information<br /><iframe width="100%" src="https://www.youtube.com/embed/1FbCt_4vuak" frameborder="0" 
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
+            <!--<td style="margin-left: 10px">
+                Price
+                Quantity: DropdownList<br />
+                Btn<br />
+                Result
+            </td>-->
+        </tr>
+        <tr>
+            <td class="auto-style5">Удахгүй мэдээлэл оруулах болно.</td>
+        </tr>
+        <tr>
+            <td class="auto-style5">
+               Электрон систем </td>
+        </tr>
+    </table>
+    <div class="bxslider">
+        <div> <img src="../ItemImage/Sample Pictures/Chrysanthemum.jpg" title="Image-1" /></div>
+        <div> <img src="../ItemImage/Sample Pictures/Desert.jpg" title="Image-2" /></div>
+        <div> <img src="../ItemImage/Sample Pictures/Hydrangeas.jpg" title="Image-3" /></div>
+        <div> <img src="../ItemImage/Sample Pictures/Jellyfish.jpg" title="Image-4" /></div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $('.bxslider').bxSlider({
+                mode: 'false',
+                caption: true,
+                SlideWidth: 300,
+                auto: true,
+                autoControls: true
+            });
+        });
+    </script>
+</asp:Content>
