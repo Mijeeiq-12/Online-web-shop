@@ -1,0 +1,29 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace WebMiraftel.Pages
+{
+    public partial class Search : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (PreviousPage != null)
+            {/*
+                TextBox txtSearchBox =
+                    (TextBox)PreviousPage.FindControl("txtSearch");
+
+                lblSearch.Text = string.Format("Хайлтын үр дүн:{0}", txtSearchBox.Text);
+                */
+                Image myImage =
+                    (Image)PreviousPage.FindControl("imgTulips");
+                imgResult.ImageUrl = myImage.ImageUrl;
+                imgResult.Width = 200;
+                imgResult.Height = 200;
+            }
+        }
+    }
+}
