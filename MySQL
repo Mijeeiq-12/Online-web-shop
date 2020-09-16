@@ -1,0 +1,71 @@
+create database Raftel
+create table Product
+(
+	Id int identity(1,1) not null primary key,
+	TypeID int not null,
+	Name nvarchar(100) not null,
+	Price decimal(18,0) not null,
+	Information text,
+	Images nvarchar(100),
+)
+create table ProductTypes
+(
+	Id int identity(1,1) not null primary key,
+	TypeID nvarchar(50) not null,
+)
+create table Cart
+(
+	ID int identity(1,1) not null ,
+	ClientID nvarchar(50) not null,
+	ProductID int not null,
+	Amount int not null,
+	DatePurchased datetime default getdate(),
+	IsInCart bit not null,
+	constraint PK_Purchase primary key clustered (ID asc),
+)
+create table UserInformation
+(
+	ID int identity(1,1) not null primary key,
+	GUID nvarchar(50) not null,
+	FirstName nvarchar(50),
+	LastName nvarchar(50),
+	Address nvarchar(150),
+	PostalCode int not null,  
+)
+
+go
+alter table Product 
+	with check add constraint FK_Product_ProductTypes 
+	foreign key (TypeID) 
+	references ProductTypes (Id) 
+	ON DELETE CASCADE ON UPDATE NO ACTION;
+go
+go
+alter table Product check constraint FK_Product_ProductTypes 
+go
+
+go
+alter table Cart 
+	with check add constraint FK_Cart_Products 
+	foreign key (ProductID) 
+	references Product (Id) 
+	ON DELETE CASCADE ON UPDATE CASCADE;
+go
+go
+alter table Cart check constraint FK_Cart_Products 
+go
+
+select * from Product
+select * from ProductTypes
+select * from Cart
+select * from UserInformation
+delete from Product where id='16';
+delete from UserInformation where id='5';
+delete from Cart 
+
+delete from ProductTypes where id='3'
+
+insert into ProductTypes values ('Type 4')
+insert into ProductTypes values ('Type 3')
+
+insert into Product values (1, 'Mijee', 500, '', '') 
