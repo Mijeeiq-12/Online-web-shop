@@ -1,0 +1,76 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MiraftelMaster.master.cs" Inherits="WebMiraftel.MiraftelMaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>MIRAFTEL LLC</title>
+    <link rel="stylesheet" href="Style/StyleSheet.css" type="text/css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style3 {
+            margin-left: 640px;
+        }
+        .auto-style4 {
+            margin-left: 680px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <div id ="wrapper">
+            <div id ="banner">
+                <asp:Image ID="Image2" runat="server" ImageUrl="~/ItemImage/Background 6.png" BorderStyle="None" Height="200px" Width="100%"  />
+            </div>
+                <div id ="navigation">
+                    <ul id ="nav">
+                        <li><asp:Hyperlink ID="Hyperlink1" runat="server" NavigateUrl="~/Pages/Index.aspx">Нүүр хуудас</asp:Hyperlink></li>
+                        <li><asp:Hyperlink ID="Hyperlink2" runat="server" NavigateUrl="~/Pages/ProductView.aspx">Үйл ажиллагаа</asp:Hyperlink></li>
+                        <li><asp:Hyperlink ID="Hyperlink3" runat="server" NavigateUrl="~/Pages/WebShopOne.aspx">
+                            Урьдчилан захиалга</asp:Hyperlink></li>
+                        <li><asp:Hyperlink ID="Hyperlink5" runat="server">Хэрэгжүүлэх төсөл</asp:Hyperlink></li>
+                        <li><asp:Hyperlink ID="Hyperlink4" runat="server" NavigateUrl="~/Pages/Management/Management.aspx">
+                            Бүтээгдэхүүн удирдах</asp:Hyperlink></li>
+                    </ul>
+                    <ul id="nav2">
+                        <li style="float: right">
+                            <asp:HyperLink ID="lnkRegister" runat="server" NavigateUrl="~/Pages/Account/Register.aspx">Бүртгүүлэх</asp:HyperLink>
+                            <asp:HyperLink ID="litStatus" runat="server" NavigateUrl="~/Pages/ShoppingCart.aspx"></asp:HyperLink>
+                        </li>
+                        <li style="float: right">
+                            <asp:HyperLink ID="LnkLogIn" runat="server" NavigateUrl="~/Pages/Account/Login.aspx">Нэвтрэх</asp:HyperLink>
+                            <asp:LinkButton ID="btnLogOut" runat="server" Text="Log out" OnClick="lnkLogOut_Click"></asp:LinkButton>
+                        </li>
+                        <li style="float:left">
+                             <asp:HyperLink ID="Search" runat="server" NavigateUrl="~/Pages/SearchPage.aspx">Searching</asp:HyperLink>
+                        </li>
+                    </ul>
+                </div><br /><br />
+                <div id ="content" class="auto-style3">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">
+
+                    </asp:ContentPlaceHolder>
+                </div>
+            <strong /><hr />
+            <footer>
+                <p>&copy; <%: DateTime.Now.Year %> - MIRAFTEL LLC&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ХОЛБОО БАРИХ:</p>
+                <p style="left:auto" class="auto-style4">Утас: 88323216, 91336633, 95258535</p>
+                <p style="left:auto" class="auto-style4">E-mail: Mijee.iq1@gmail.com, Miraftel@gmail.com</p>
+            </footer>
+        </div>
+    </div>
+    </form>
+</body>
+</html>
+
